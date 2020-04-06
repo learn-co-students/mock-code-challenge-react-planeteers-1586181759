@@ -7,7 +7,8 @@ const PlaneteersContainer = (props) => {
                         
       return (
             <Planeteer planeteer={onePlaneteer}
-            
+                       changeText={props.changeText}
+                       
                                  />
       )
   })

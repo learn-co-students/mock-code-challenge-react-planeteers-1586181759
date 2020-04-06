@@ -15,10 +15,25 @@ class App extends React.Component {
   componentDidMount() {
     fetch('http://localhost:4000/planeteers')
       .then(response => response.json())
-      .then(data => this.setState({ themplanet : data }))
+      .then(data => {
+            data.forEach(item => {item["bioOrQuote"] = true})
+            this.setState({ themplanet : data })
+          })
   }
 
-  
+  changeText = (event, orNot) => {
+            const planId = event.target.parentElement.dataset.id
+            const workArray = [...this.state.themplanet]
+    
+            if (orNot) {
+              debugger
+                workArray[planId - 1].bioOrQuote = true
+            } else {
+              debugger
+                workArray[planId - 1].bioOrQuote = false
+            }
+            this.setState({ themplanet : workArray })
+  }
 
 
   render(){
@@ -31,8 +46,7 @@ class App extends React.Component {
         <SearchBar />
         <RandomButton/>
         <PlaneteersContainer planeteersData={this.state.themplanet}
-        
-        
+                             changeText={this.changeText} 
                             />
       </div>
     );
