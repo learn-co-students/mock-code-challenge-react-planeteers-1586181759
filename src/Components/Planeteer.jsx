@@ -1,19 +1,52 @@
 import React from 'react';
 
+
+
+let bioQuoteOnOff = true
+
 class Planeteer extends React.Component {
 
+
+  
+
+  getAge = (birthYear) => {
+         let today = new Date()
+         let age = today.getFullYear() - birthYear
+         return age   
+  } 
+
   render() {
+     
+     const image = this.props.planeteer.pictureUrl
+     const name = this.props.planeteer.name
+     const local = this.props.planeteer.fromUSA
+     const born = this.props.planeteer.born
+     const bio = this.props.planeteer.bio
+     const quote = this.props.planeteer.quote
+     const twitter = this.props.planeteer.twitter
+   
+
     return (
       <li className="cards__item">
         <div className="card">
-          <img src={"RENDER IMAGE"} alt={"RENDER PERSON NAME"} className="card__image" />
+          <img src={image} alt={name} className="card__image" onClick={() => bioQuoteOnOff = !bioQuoteOnOff}/>
           <div className="card__content">
-            <div className="card__title">{"RENDER NAME"}</div>
-            <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+            <div className="card__title">{name}</div>
+            <p className="card__text">{bioQuoteOnOff
+                  ?
+                  bio
+                  :
+                  quote
+                                      }</p>
             <div className="card__detail">
-              <p>{"RENDER TWITTER HANDLE"}</p>
-              <p>Age: {"RENDER THE AGE OF THE PERSON"}</p>
-              <p>{"CONDITIONALLY RENDER WHETHER THE PERSON IS USA-BASED OR WORKING OVERSEAS"}</p>
+              <p>{twitter}</p>
+              <p>Age: {this.getAge(born)}</p>
+              <p>{local
+                  ?
+                  "USA-based"
+                  :
+                  "Working Overseas"
+                 }</p>
             </div>
             {/* DELIVERABLE 5 */}
           </div>
