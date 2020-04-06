@@ -43,6 +43,15 @@ class App extends React.Component {
     //body 
     //.then
     //.then
+    //fetch(`http://localhost:4000/planeteers/`, {
+  //   method: 'POST',
+  //   headers: {
+  //     'Content-Type': 'application/json',
+  //   },
+  //   body: JSON.stringify({
+  //    planeteer: newPlaneteer 
+  //   })
+  // })
     let newPlaneteerWID = {
       ...newPlaneteer, id: Math.floor(Math.random()*1000)
     }

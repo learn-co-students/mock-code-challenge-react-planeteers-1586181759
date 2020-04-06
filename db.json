@@ -1,5 +1,5 @@
 {
-  "planeteers":[
+  "planeteers": [
     {
       "id": 1,
       "name": "Xiuhtezcatl Martinez",
@@ -71,7 +71,7 @@
       "twitter": " "
     },
     {
-      "id":8,
+      "id": 8,
       "name": "Alexandria Villaseñor",
       "fromUSA": true,
       "born": 2005,
@@ -80,5 +80,6 @@
       "pictureUrl": "https://www.abc.net.au/news/image/11556402-3x2-940x627.jpg",
       "twitter": "@AlexandriaV2005"
     }
+    
   ]
 }
