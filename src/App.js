@@ -8,13 +8,59 @@ import SearchBar from './Components/SearchBar'
 
 class App extends React.Component {
 
+  state = {
+    searchInput: "",
+    planeteers: []
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:4000/planeteers")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            planeteers: result
+          });
+        }
+      )
+  }
+
+  handleInput = (e) => {
+    this.setState({
+      searchInput: e.target.value
+    })
+  }
+
+  getNewArray = () => {
+    let newArray = this.state.planeteers.filter(planeteer => {
+      if (planeteer.name.toLowerCase().includes(this.state.searchInput)
+      ||
+      planeteer.bio.toLowerCase().includes(this.state.searchInput)) {
+        return planeteer
+      }
+    })
+    // this.setState({
+    //   planeteers: newArray
+    // })
+    return newArray
+  }
+
+  addPlaneteer = (newPOJO) => {
+    let newArray = [...this.state.planeteers, newPOJO]
+    console.log(newArray)
+    this.setState({
+      planeteers: newArray
+    })
+  }
+
   render(){
+    console.log(this.state.planeteers)
     return (
       <div>
         <Header />
-        <SearchBar />
-        <RandomButton/>
-        <PlaneteersContainer />
+        <SearchBar searchInput={this.state.searchInput} handleInput={this.handleInput}/>
+        <RandomButton planeteers={this.state.planeteers} addPlaneteer={this.addPlaneteer}/>
+        <PlaneteersContainer planeteers={this.getNewArray()}/>
       </div>
     );
   }
