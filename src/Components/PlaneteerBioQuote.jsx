@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaneteerBioQuote from './PlaneteerBioQuote'
+
 
 
 let bioQuoteOnOff = true
@@ -9,7 +9,8 @@ class Planeteer extends React.Component {
 
   getQuoteOrBio = (event) => {
            bioQuoteOnOff = !bioQuoteOnOff
-           this.props.changeText(event, bioQuoteOnOff)
+           debugger
+           this.props.changeText(bioQuoteOnOff)
   }
 
   getAge = (birthYear) => {
@@ -19,7 +20,7 @@ class Planeteer extends React.Component {
   } 
 
   render() {
-     const bioOrQuote = this.props.planeteer.bioOrQuote
+     const bioOrQuote = this.props.selector
      const image = this.props.planeteer.pictureUrl
      const name = this.props.planeteer.name
      const local = this.props.planeteer.fromUSA
@@ -31,16 +32,13 @@ class Planeteer extends React.Component {
 
     return (
       <li className="cards__item">
-        <div data-id={this.props.planeteer.id} className="card">
+        <div className="card">
           <img src={image} alt={name} className="card__image" onClick={this.getQuoteOrBio}/>
           <div className="card__content">
+
             <div className="card__title">{name}</div>
-            <p className="card__text">{bioOrQuote
-                                       ?
-                                        bio
-                                       :
-                                        quote
-                                      }</p>
+            
+            <p className="card__text">{bioOrQuote}</p>
             <div className="card__detail">
               <p>{twitter}</p>
               <p>Age: {this.getAge(born)}</p>
