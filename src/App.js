@@ -13,7 +13,7 @@ class App extends React.Component {
     searching: false
   }
 
-  var filteredPlaneteers
+  // var filteredPlaneteers
 
   componentDidMount() {
     fetch("http://localhost:4000/planeteers")
