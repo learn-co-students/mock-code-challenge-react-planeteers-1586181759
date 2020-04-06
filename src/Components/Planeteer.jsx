@@ -3,25 +3,33 @@ import React from 'react';
 class Planeteer extends React.Component {
 
   state={
-    overSeas: true
-    
+    toggleCard: false
+  }
+
+  handleToggle = (e) => {
+    this.setState({
+      toggleCard: !this.state.toggleCard
+    })
   }
   
-  planeteer = this.props.name
+  
   
   render() {
+    let {name, fromUSA, born, bio, quote, pictureUrl, twitter} = this.props.planeteer
+    let currentAge = new Date().getFullYear()-born
+
     // console.log(planeteers)
     return (
       <li className="cards__item">
         <div className="card">
-          <img src={"RENDER IMAGE"} alt={this.props.name} className="card__image" />
+          <img src={pictureUrl} alt={name} className="card__image" onClick={this.toggleCard}/>
           <div className="card__content">
-            <div className="card__title">{this.props.name}</div>
-            <p className="card__text">{"CONDITIONALLY RENDER BIO OR QUOTE"}</p>
+            <div className="card__title">{name}</div>
+            <p className="card__text">{this.state.toggleCard ? quote : bio}</p>
             <div className="card__detail">
               <p>{this.props.twitter}</p>
-              <p>Age: {"RENDER THE AGE OF THE PERSON"}</p>
-              <p>{this.state.overSeas}</p>
+              <p>Age: {currentAge}</p>
+              <p>{fromUSA ? 'from Usa' : 'Working Overseas'}</p>
             </div>
             {/* DELIVERABLE 5 */}
           </div>
