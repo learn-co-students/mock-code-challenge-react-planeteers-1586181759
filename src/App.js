@@ -24,15 +24,21 @@ class App extends React.Component {
   changeText = (event, orNot) => {
             const planId = event.target.parentElement.dataset.id
             const workArray = [...this.state.themplanet]
-    
             if (orNot) {
-              debugger
                 workArray[planId - 1].bioOrQuote = true
             } else {
-              debugger
                 workArray[planId - 1].bioOrQuote = false
             }
             this.setState({ themplanet : workArray })
+  }
+
+  randomNewOne = (randomPlaneteer) => {
+          const workArray = [...this.state.themplanet]
+          randomPlaneteer.id = workArray.length + 1
+          randomPlaneteer["bioOrQuote"] = true
+          workArray.push(randomPlaneteer)
+          console.log(workArray)
+          this.setState({ themplanet : workArray })
   }
 
 
@@ -44,7 +50,7 @@ class App extends React.Component {
       <div>
         <Header        />
         <SearchBar />
-        <RandomButton/>
+        <RandomButton randomNewOne={this.randomNewOne}/>
         <PlaneteersContainer planeteersData={this.state.themplanet}
                              changeText={this.changeText} 
                             />
