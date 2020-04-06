@@ -33,12 +33,22 @@ class App extends React.Component {
   }
 
   randomNewOne = (randomPlaneteer) => {
-          const workArray = [...this.state.themplanet]
-          randomPlaneteer.id = workArray.length + 1
-          randomPlaneteer["bioOrQuote"] = true
-          workArray.push(randomPlaneteer)
-          console.log(workArray)
-          this.setState({ themplanet : workArray })
+          fetch('http://localhost:4000/planeteers', {
+                method: "POST",
+                headers: {
+                        "content-type": "application/json"
+                },
+                body: JSON.stringify(randomPlaneteer)
+                })
+          .then(response => response.json())
+          .then((newOne) => {
+                 const workArray = [...this.state.themplanet]
+               //  randomPlaneteer.id = workArray.length + 1
+                 randomPlaneteer["bioOrQuote"] = true
+                 workArray.push(newOne)
+                 console.log(workArray)
+                 this.setState({ themplanet : workArray })
+            })
   }
 
 
