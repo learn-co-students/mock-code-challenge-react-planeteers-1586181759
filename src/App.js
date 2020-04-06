@@ -8,7 +8,8 @@ import SearchBar from './Components/SearchBar'
 
 class App extends React.Component {
   state ={
-    planeteersData: []
+    planeteersData: [],
+    searchString: ""
   }
 
   componentDidMount() { // fetch data
@@ -31,7 +32,7 @@ class App extends React.Component {
   // alter Planeteer.jsx to render individual data
   // add ternary to conditionally render planeteer.fromUSA
   // add state ={cardClicked: false} to Planeteer.jsx
-  // have a toggleCardClicked function() { this.setState({this.state.cardClicked: !this.state.cardClicked})}
+  // have a toggleCardClicked function() { this.setState({cardClicked: !this.state.cardClicked})}
   // add ternary to conditionally render 
   // this.state.cardClicked? {planeteer.quote} : {planeteer.bio}
 
@@ -46,21 +47,41 @@ class App extends React.Component {
   // makes me aware of there my conceptual gaps exist; the muscle memory might still be there though.
   // need to connect different parts of my brain together just like different parts of this app.
 
+  // so we decided to save the planeteersData array in this.state.planeteersData 
+  // which means if we want dynamic search (i.e., dynamic filter) we want to create a filter function
+  // that takes in the array held in this.state.planeteersData and filters it based on
+  // the values held in SearchBar. Then we just need pass down that filteredArray as props in place of this.state.planeteersData
+  // which means we need a child (searchBar) to control the data its sibling (PlaneteersContainer) receives
+  // since we do not have lateral data flow, we need inverse data flow.
+  // which means we need to pass up the value held in SearchBar to App.js
+  // which means we need a callback in App.js that we pass down to SearchBar.jsx
+  // and that callback needs to setState
 
+  setSearchString = (event) => {
+    this.setState({searchString: event.target.value})
+  }
 
-
+  filteredPlaneteersArray = (searchString) => {
+    let filteredArray = this.state.planeteersData.filter(planeteerObj => 
+      planeteerObj.name.toLowerCase().includes(searchString.toLowerCase())
+      ||
+      planeteerObj.bio.toLowerCase().includes(searchString.toLowerCase())
+      )
+    // to add:     || planeteerObj.bio.includes(searchString)
+    return filteredArray
+  }
 
   render(){
+    let data = this.filteredPlaneteersArray(this.state.searchString)
     return (
       <div>
         <Header />
-        <SearchBar />
+        <SearchBar setSearchString={this.setSearchString}/>
         <RandomButton/>
-        <PlaneteersContainer planeteersData={this.state.planeteersData} />
+        <PlaneteersContainer planeteersData={data} />
       </div>
     );
   }
-
 }
 
 export default App;

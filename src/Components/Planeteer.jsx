@@ -11,8 +11,7 @@ class Planeteer extends React.Component {
   }
 
   render() {
-    // let {id, name, fromUSA, born, bio, quote, pictureUrl, twitter} = this.props.planeteer
-    let {id, name, fromUSA, born, bio, quote, pictureUrl, twitter} = this.props.planeteer
+    let {name, fromUSA, born, bio, quote, pictureUrl, twitter} = this.props.planeteer
     let age = 2020 - born // change later to have 2020 = thisYear
     
     return (
