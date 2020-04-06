@@ -5,7 +5,7 @@ const PlaneteersContainer = (props) => {
 
   const getEach = props.planeteers.map((member) => {
     return (
-    <Planeteer key={member.name} planeteer={member}/>
+    <Planeteer key={member.id} planeteer={member}/>
     )
   })
 

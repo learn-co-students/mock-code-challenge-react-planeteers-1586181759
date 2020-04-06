@@ -46,15 +46,28 @@ class App extends React.Component {
   }
 
   addPlaneteer = (newPOJO) => {
-    let newArray = [...this.state.planeteers, newPOJO]
-    console.log(newArray)
-    this.setState({
-      planeteers: newArray
-    })
+    // let newArray = [...this.state.planeteers, newPOJO]
+    // this.setState({
+    //   planeteers: newArray
+    // })
+      fetch("http://localhost:4000/planeteers", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(newPOJO)
+      })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            this.setState({
+              planeteers: [...this.state.planeteers,result]
+            });
+          }
+        )
   }
 
   render(){
-    console.log(this.state.planeteers)
     return (
       <div>
         <Header />
