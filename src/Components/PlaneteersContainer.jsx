@@ -8,9 +8,7 @@ console.log(props)
     <ul className="cards">
       {
         props.planeteers.map((planeteer) => {
-          return <Planeteer key={planeteer.id}
-                            planeteer={planeteer}
-                             />
+          return <Planeteer key={planeteer.id} planeteer={planeteer}/>
         })
       }
     </ul>

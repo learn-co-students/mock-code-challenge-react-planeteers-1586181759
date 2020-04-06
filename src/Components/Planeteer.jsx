@@ -22,7 +22,7 @@ class Planeteer extends React.Component {
     return (
       <li className="cards__item">
         <div className="card">
-          <img src={pictureUrl} alt={name} className="card__image" onClick={this.toggleCard}/>
+          <img src={pictureUrl} alt={name} className="card__image" onClick={this.handleToggle}/>
           <div className="card__content">
             <div className="card__title">{name}</div>
             <p className="card__text">{this.state.toggleCard ? quote : bio}</p>

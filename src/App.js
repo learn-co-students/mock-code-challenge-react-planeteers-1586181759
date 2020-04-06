@@ -11,9 +11,15 @@ const API = "http://localhost:4000/planeteers"
 class App extends React.Component {
 
     state = {
-      planeteers: []
-
+      planeteers: [],
+      searchBio: " "
     }
+
+   findBioInfo = (bioInfo) => {
+     this.setState({
+       searchBio: bioInfo
+     })
+   }
 
     componentDidMount(){
       fetch(API)
@@ -26,12 +32,14 @@ class App extends React.Component {
       })
     }
 
+    
+
 
   render(){
     return (
       <div>
         <Header />
-        <SearchBar />
+        <SearchBar searchBio={this.state.searchBio} findBioInfo={this.findBioInfo}/>
         <RandomButton/>
         <PlaneteersContainer planeteers={this.state.planeteers} />
       </div>

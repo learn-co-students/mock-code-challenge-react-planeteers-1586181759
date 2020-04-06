@@ -9,7 +9,7 @@ class SearchBar extends React.Component {
       </div>
     );
   }
-
+ 
 }
 
 export default SearchBar;
