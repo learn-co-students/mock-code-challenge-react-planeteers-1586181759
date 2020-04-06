@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Planeteer from './Planeteer'
 
-const PlaneteersContainer = () => {
-
+const PlaneteersContainer = (props) => {
+console.log(props)
   return (
+    <Fragment>
     <ul className="cards">
       {
-        "Render Planeteers here"
+        props.planeteers.map((planeteer) => {
+          return <Planeteer key={planeteer.name}
+                             />
+        })
       }
     </ul>
+    </Fragment>
   )
 
 };
