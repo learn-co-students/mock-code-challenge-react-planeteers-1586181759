@@ -18,6 +18,10 @@ class Planeteer extends React.Component {
     return currentYear
   }
 
+  removePlaneteer = () => {
+    this.props.deletePlaneteer(this.props.planeteer)
+  }
+
   render() {
 
     let {name, fromUSA, born, bio, quote, pictureUrl, twitter} = this.props.planeteer
@@ -34,7 +38,7 @@ class Planeteer extends React.Component {
               <p>Age: {this.getYear()-born}</p>
               <p>{fromUSA ? "USA-based" : "Working Overseas"}</p>
             </div>
-            {/* DELIVERABLE 5 */}
+            <input type="button" value="Remove Planeteer" onClick={this.removePlaneteer} ></input>
           </div>
         </div>
       </li>

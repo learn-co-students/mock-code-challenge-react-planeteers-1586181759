@@ -67,13 +67,26 @@ class App extends React.Component {
         )
   }
 
+  deletePlaneteer = (badPOJO) => {
+    this.setState({
+      planeteers: [
+        ...this.state.planeteers.slice(0,badPOJO.id),
+        ...this.state.planeteers.slice(badPOJO.id+1,this.state.planeteers.length)
+    ]
+    });
+    fetch(`http://localhost:4000/planeteers/${badPOJO.id}`, {
+      method: 'DELETE'
+    })
+      .then(res => res.json())
+  }
+
   render(){
     return (
       <div>
         <Header />
         <SearchBar searchInput={this.state.searchInput} handleInput={this.handleInput}/>
         <RandomButton planeteers={this.state.planeteers} addPlaneteer={this.addPlaneteer}/>
-        <PlaneteersContainer planeteers={this.getNewArray()}/>
+        <PlaneteersContainer planeteers={this.getNewArray()} deletePlaneteer={this.deletePlaneteer}/>
       </div>
     );
   }
