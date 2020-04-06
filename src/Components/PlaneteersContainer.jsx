@@ -6,7 +6,9 @@ const PlaneteersContainer = (props) => {
 
   let arrayOfComponents = props.planeteers.map((planeteer) => {
     
-  return <Planeteer key={planeteer.id} planeteer={planeteer}/>
+  return <Planeteer key={planeteer.id} planeteer={planeteer}
+                      deletePlaneteer={props.deletePlaneteer}
+  />
   })
 
   return (
@@ -14,6 +16,7 @@ const PlaneteersContainer = (props) => {
       {
         arrayOfComponents
       }
+      
     </ul>
   )
 

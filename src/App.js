@@ -37,10 +37,31 @@ class App extends React.Component {
     }
 
   addANewPlaneteerToDom = (newPlaneteer) => {
-    let newListofPlaneteers = [...this.state.planeteers, newPlaneteer]
+    //fetch here
+    //
+    //headers
+    //body 
+    //.then
+    //.then
+    let newPlaneteerWID = {
+      ...newPlaneteer, id: Math.floor(Math.random()*1000)
+    }
+    let newListofPlaneteers = [...this.state.planeteers, newPlaneteerWID]
     this.setState({
       planeteers: newListofPlaneteers
     })
+  }
+
+  deletePlaneteer = (id) => {
+ //console.log("hello from delete function")
+
+ // fetch here
+    let filteredArray = this.state.planeteers.filter(planeteer => {
+      return planeteer.id !== id
+    })
+      this.setState({
+        planeteers: filteredArray
+      })
   }
 
   render(){
@@ -49,7 +70,10 @@ class App extends React.Component {
         <Header />
         <SearchBar  search={this.state.search}  changeSearch={this.changeSearch}          />
         <RandomButton addANewPlaneteerToDom={this.addANewPlaneteerToDom}/>
-        <PlaneteersContainer planeteers={this.returnsArray()}/>
+        <PlaneteersContainer planeteers={this.returnsArray()}
+                             deletePlaneteer={this.deletePlaneteer}
+                          
+                          />
       </div>
     );
   }
